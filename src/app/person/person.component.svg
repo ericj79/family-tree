@@ -1,0 +1,11 @@
+<svg:g attr.transform="translate({{xPos - size}},{{yPos - size}})">
+  <svg:circle [attr.r]="size" [attr.cx]="size" [attr.cy]="size" [class]="gender" />
+  <image x="2" y="1.1" width="6" height="8" href="assets/FamilyTree.svg" *ngIf="gender=='self'" />
+  <image x="2" y="1.5" width="6" height="6" href="assets/grandmother.svg"
+    *ngIf="gender=='female' && (level=='great' || level == 'grand')" />
+  <image x="2" y="1.5" width="6" height="6" href="assets/mother.svg" *ngIf="gender=='female' && level=='parent'" />
+  <image x="2" y="1.5" width="6" height="6" href="assets/grandfather.svg"
+    *ngIf="gender=='male' && (level=='great' || level == 'grand')" />
+  <image x="2" y="1.5" width="6" height="6" href="assets/father.svg" *ngIf="gender=='male' && level=='parent'" />
+
+</svg:g>

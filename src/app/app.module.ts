@@ -17,8 +17,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { TidbitsComponent } from './tidbits/tidbits.component';
+import { PersonComponent } from './person/person.component';
 @NgModule({
-  declarations: [AppComponent, AncestryComponent, LayoutComponent],
+  declarations: [AppComponent, AncestryComponent, LayoutComponent, TidbitsComponent, PersonComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
