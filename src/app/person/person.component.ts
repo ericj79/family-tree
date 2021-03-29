@@ -10,6 +10,7 @@ export class PersonComponent implements OnInit {
   @Input() xPos: number = 0;
   @Input() yPos: number = 0;
   @Input() gender: string = 'female';
+  @Input() name: string = '';
   @Input() level: string = 'great';
 
   constructor() {}

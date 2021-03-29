@@ -1,0 +1,77 @@
+<p class="mat-body">Click on the people that you know the information for to track which ones you have completed. Mark yourself as complete when you have a <a href="https://familysearch.org" target="_blank">FamilySearch.org</a> account that you know how to log into.</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 0 93 70" width="100%">
+  <defs>
+    <g id="grandToGreat">
+      <polyline class="lines"
+        attr.points="{{chart.great.people[0].x}},{{chart.great.y}} {{chart.great.people[0].x}},{{(chart.great.y+chart.grand.y)/2}} {{chart.great.people[1].x}},{{(chart.great.y+chart.grand.y)/2}} {{chart.great.people[1].x}},{{chart.great.y}}" />
+      <line class="lines" [attr.x1]="chart.grand.people[0].x" [attr.x2]="chart.grand.people[0].x"
+        [attr.y1]="(chart.great.y+chart.grand.y)/2" [attr.y2]="chart.grand.y" />
+    </g>
+    <g id="parentToGrand">
+      <polyline class="lines"
+        attr.points="{{chart.grand.people[0].x}},{{chart.grand.y}} {{chart.grand.people[0].x}},{{(chart.parent.y+chart.grand.y)/2}} {{chart.grand.people[1].x}},{{(chart.parent.y+chart.grand.y)/2}} {{chart.grand.people[1].x}},{{chart.grand.y}}" />
+      <line class="lines" [attr.x1]="chart.parent.people[0].x" [attr.x2]="chart.parent.people[0].x"
+        [attr.y1]="(chart.parent.y+chart.grand.y)/2" [attr.y2]="chart.parent.y" />
+    </g>
+  </defs>
+  <g id="lines">
+    <g id="grandToGreatLines">
+      <use xlink:href="#grandToGreat" />
+      <use xlink:href="#grandToGreat"
+        [attr.x]="chart.great.people[2].x-chart.great.people[0].x" />
+      <use xlink:href="#grandToGreat"
+        [attr.x]="chart.great.people[4].x-chart.great.people[0].x" />
+      <use xlink:href="#grandToGreat"
+        [attr.x]="chart.great.people[6].x-chart.great.people[0].x" />
+    </g>
+    <g id="parentToGrandLines">
+      <use xlink:href="#parentToGrand" />
+      <use xlink:href="#parentToGrand" [attr.x]="chart.grand.people[2].x-chart.grand.people[0].x" />
+    </g>
+    <g id="selfToParent">
+      <polyline class="lines"
+        attr.points="{{chart.parent.people[0].x}},{{chart.parent.y}} {{chart.parent.people[0].x}},{{(chart.parent.y+chart.self.y)/2}} {{chart.parent.people[1].x}},{{(chart.parent.y+chart.self.y)/2}} {{chart.parent.people[1].x}},{{chart.parent.y}}" />
+      <line class="lines" [attr.x1]="chart.self.people[0].x" [attr.x2]="chart.self.people[0].x" [attr.y1]="(chart.parent.y+chart.self.y)/2" [attr.y2]="chart.self.y" />
+    </g>
+  </g>
+  <g id="people" *ngIf="count$ | async; let data">
+    <g *ngFor="let person of chart.great.people; let i=index">
+      <g app-person [size]="size" [xPos]="person.x" [yPos]="chart.great.y" [name]="person.name"
+        [gender]="person.gender" level="great" class="clickable" (click)="onClick('great', i)"
+        [ngClass]="{checked: data.great[i][guid.GUID]}">
+      </g>
+      <text [attr.x]="person.x" [attr.y]="chart.great.y - (size*1.6)" text-anchor="middle">
+        {{getSize(data.great[i])}}
+      </text>
+    </g>
+
+    <g *ngFor="let person of chart.grand.people; let i=index">
+      <g app-person [size]="size" [xPos]="person.x" [name]="person.name" [yPos]="chart.grand.y"
+        [gender]="person.gender" level="grand" class="clickable" (click)="onClick('grand', i)"
+        [ngClass]="{checked: data.grand[i][guid.GUID]}">
+      </g>
+      <text [attr.x]="person.x + size + .5" [attr.y]="chart.grand.y + .7">
+        {{getSize(data.grand[i])}}
+      </text>
+    </g>
+
+    <g *ngFor="let person of chart.parent.people; let i=index">
+      <g app-person [size]="size" [xPos]="person.x" [yPos]="chart.parent.y" [gender]="person.gender"
+        [name]="person.name" level="parent" class="clickable" (click)="onClick('parent', i)" [ngClass]=" {checked:
+        data.parent[i][guid.GUID]}">
+      </g>
+      <text [attr.x]="person.x + size + .5" [attr.y]="chart.parent.y + .7">
+        {{getSize(data.parent[i])}}
+      </text>
+    </g>
+
+    <g *ngFor="let person of chart.self.people; let i=index">
+    <g app-person [size]="size" [name]="person.name" [xPos]="person.x" [yPos]="chart.self.y"
+      [gender]="person.gender" checked="person.checked" level="self" class="clickable" (click)="onClick('self', i)"
+      [ngClass]="{checked: data.self[i][guid.GUID]}"></g>
+    <text [attr.x]="person.x + size + 1" [attr.y]="chart.self.y + .7">
+      {{getSize(data.self[i])}}
+    </text>
+    </g>
+  </g>
+</svg>
