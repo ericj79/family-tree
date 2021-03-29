@@ -44,7 +44,6 @@ export class AncestryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.count$.pipe(takeUntil(this.destructor$)).subscribe((data) => {
-      console.log(data);
       if (data) {
         this.currentCounts = data;
       }
