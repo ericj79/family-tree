@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "west-chester-rs"
+  },
+  "targets": {
+    "west-chester-rs": {
+      "hosting": {
+        "tree": [
+          "wcrs-family-tree"
+        ]
+      }
+    }
+  }
+}
