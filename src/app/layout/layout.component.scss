@@ -1,25 +1,19 @@
 .grid-container {
-    margin: 20px;
+    padding: 0 1em;
 }
 
 .dashboard-card {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-}
-
-.more-button {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-}
-
-.dashboard-card-content {
-    text-align: center;
+    top: 1em;
+    left: 1em;
+    right: 1em;
+    bottom: 1em;
 }
 
 .mat-card-title .mat-icon {
     vertical-align: bottom;
+}
+
+.no-flex {
+    height: 25em;
 }

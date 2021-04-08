@@ -10,6 +10,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 export class LayoutComponent {
   public readonly title1 = '4 Generation Challenge';
   public readonly title2 = 'Something I Learned ...';
+  public flexHeight = true;
 
   private layout = [
     { title: this.title1, icon: 'family_restroom', cols: 2, rows: 1 },
@@ -19,6 +20,8 @@ export class LayoutComponent {
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
+      console.log('matches', matches);
+      this.flexHeight = !matches;
       if (matches) {
         return this.layout;
       }
