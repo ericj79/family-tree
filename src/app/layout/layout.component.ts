@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material/dialog';
+import { AddMemoryComponent } from '../add-memory/add-memory.component';
 
 @Component({
   selector: 'app-layout',
@@ -22,9 +24,12 @@ export class LayoutComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private dialog: MatDialog
+  ) {}
 
   openDialog() {
-    console.log('open the form');
+    this.dialog.open(AddMemoryComponent);
   }
 }

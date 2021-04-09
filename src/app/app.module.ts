@@ -19,8 +19,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { TidbitsComponent } from './tidbits/tidbits.component';
 import { PersonComponent } from './person/person.component';
+import { AddMemoryComponent } from './add-memory/add-memory.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AppComponent, AncestryComponent, LayoutComponent, TidbitsComponent, PersonComponent],
+  declarations: [
+    AppComponent,
+    AncestryComponent,
+    LayoutComponent,
+    TidbitsComponent,
+    PersonComponent,
+    AddMemoryComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -35,6 +45,8 @@ import { PersonComponent } from './person/person.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
