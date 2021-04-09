@@ -14,6 +14,16 @@
     vertical-align: bottom;
 }
 
+mat-card-content.dashboard-card-content {
+    margin: 0
+}
+
+.sticky {
+    position: absolute;
+    right: -.25em;
+    top: -1em;
+}
+
 .no-flex {
     height: 25em;
 }

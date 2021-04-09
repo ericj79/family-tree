@@ -4,20 +4,37 @@
         family history memories with your fellow Relief Society sisters.
     </p>
     <mat-grid-list class="spacer" cols="2" [rowHeight]="flexHeight ? '100%' : '30em'">
-        <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows" [ngClass]="{'no-flex': !flexHeight}">
-            <mat-card class="dashboard-card scroll">
-                <mat-card-header>
-                    <mat-card-title>
-                        <mat-icon>{{card.icon}}</mat-icon>
-                        {{card.title}}
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="dashboard-card-content">
-                    <div>
-                        <app-ancestry *ngIf="card.title == title1"></app-ancestry>
-                        <app-tidbits *ngIf="card.title == title2"></app-tidbits>
-                    </div>
-                </mat-card-content>
+        <mat-grid-tile [colspan]="columns | async" [rowspan]="1" [ngClass]="{'no-flex': !flexHeight}">
+            <mat-card class="dashboard-card">
+                <div class="flex-height">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <mat-icon>family_restroom</mat-icon>
+                            4 Generation Challenge
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content spacer scroll">
+                        <app-ancestry></app-ancestry>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="columns|async" [rowspan]="1" [ngClass]="{'no-flex': !flexHeight}">
+            <mat-card class="dashboard-card">
+                <div class="flex-height">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <mat-icon>try</mat-icon>
+                            Something I Learned ...
+                        </mat-card-title>
+                        <button class="sticky" mat-fab (click)="openDialog()" color="primary">
+      <mat-icon class="mat-18">add</mat-icon>
+  </button>
+                    </mat-card-header>
+                    <mat-card-content class="dashboard-card-content spacer scroll">
+                        <app-tidbits class="full-height"></app-tidbits>
+                    </mat-card-content>
+                </div>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
