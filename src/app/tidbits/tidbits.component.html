@@ -1,29 +1,24 @@
-<div class="full-height">
-    <div>some stuff in what
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-        <h3 mat-subheader>what</h3>
-    </div>
+<div *ngIf="tidbits$ | async; let tidbits; else loading">
+    <mat-list>
+        <mat-list-item *ngFor="let tidbit of tidbits" class='item'>
+            <div matLine>
+                <div class="flex-wide">
+                    <span class="name">{{tidbit.name}}</span>
+                    <span class="spacer"></span>
+                    <span class="mat-small">{{tidbit.timestamp |formatTime}}</span>
+                </div>
+            </div>
+            <p matLine>
+                <span class="content"> {{tidbit.text}} </span>
+            </p>
+        </mat-list-item>
+    </mat-list>
+    <div *ngIf="tidbits.length === 0">Please add your own experience.</div>
 </div>
+<ng-template #loading>
+    <div class="loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <br/>
+        <br/> Loading&hellip;
+    </div>
+</ng-template>

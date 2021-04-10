@@ -1,3 +1,23 @@
-<form>
-    form goes here
-</form>
+<div class="flex-wide">
+    <h3 mat-dialog-title>Share Your Experience</h3>
+    <span class="spacer"> </span>
+    <mat-icon mat-dialog-close class="pointer">close</mat-icon>
+</div>
+<mat-dialog-content>
+    <form class="flex-height form-width" [formGroup]="form" (ngSubmit)="submit($event)">
+        <mat-form-field appearance="standard">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Your Name" formControlName="name">
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-hint>Leave blank to share anonymously</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Memory</mat-label>
+            <textarea matInput placeholder="Share your memory or experience here" formControlName="text"></textarea>
+            <mat-error *ngIf="form.invalid">Some text is required for the memory</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="accent" (click)="submit($event)">Add</button>
+</mat-dialog-actions>

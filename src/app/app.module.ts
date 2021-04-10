@@ -21,7 +21,12 @@ import { TidbitsComponent } from './tidbits/tidbits.component';
 import { PersonComponent } from './person/person.component';
 import { AddMemoryComponent } from './add-memory/add-memory.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormatTimePipe } from './format-time.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TidbitsComponent,
     PersonComponent,
     AddMemoryComponent,
+    FormatTimePipe,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatMenuModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
