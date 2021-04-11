@@ -1,13 +1,14 @@
-<div *ngIf="tidbits$ | async; let tidbits; else loading" class="full-height">
-    <cdk-virtual-scroll-viewport itemSize="10" class="full-height">
-        <mat-card *cdkVirtualFor="let tidbit of tidbits" class="items">
-            <img mat-card-image *ngIf="tidbit.imageURL" [src]="tidbit.imageURL" />
-            <mat-card-subtitle class="name">{{tidbit.name}} :: {{tidbit.timestamp | formatTime}}</mat-card-subtitle>
-            <mat-card-content class="content">{{tidbit.text}}</mat-card-content>
-        </mat-card>
-    </cdk-virtual-scroll-viewport>
-
-    <div *ngIf="tidbits.length === 0">Please add your own experience.</div>
+<div *ngIf="tidbits$ | async; let tidbits; else loading" class="card-height">
+    <div *ngIf(tidbits.length> 0)>
+        <cdk-virtual-scroll-viewport itemSize="10" class="full-height">
+            <mat-card *cdkVirtualFor="let tidbit of tidbits" class="items">
+                <img mat-card-image *ngIf="tidbit.imageURL" [src]="tidbit.imageURL" />
+                <mat-card-subtitle class="name">{{tidbit.name}} :: {{tidbit.timestamp | formatTime}}</mat-card-subtitle>
+                <mat-card-content class="content">{{tidbit.text}}</mat-card-content>
+            </mat-card>
+        </cdk-virtual-scroll-viewport>
+    </div>
+    <div *ngIf="tidbits.length === 0">No experiences shared yet. Please add your own experience.</div>
 </div>
 <ng-template #loading>
     <div class="loading">
