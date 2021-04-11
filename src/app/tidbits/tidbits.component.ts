@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/firestore';
+import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Tidbit } from './tidbits.model';
 
 @Component({
@@ -10,11 +7,9 @@ import { Tidbit } from './tidbits.model';
   templateUrl: './tidbits.component.html',
   styleUrls: ['./tidbits.component.scss'],
 })
-export class TidbitsComponent implements OnInit {
+export class TidbitsComponent {
   tidbits$ = this.afs
     .collection<Tidbit>('tidbits', (ref) => ref.orderBy('timestamp', 'desc'))
     .valueChanges();
   constructor(private afs: AngularFirestore) {}
-
-  ngOnInit(): void {}
 }

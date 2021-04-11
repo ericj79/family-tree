@@ -1,20 +1,4 @@
 <div *ngIf="tidbits$ | async; let tidbits; else loading" class="card-height">
-    <mat-card class="items">
-        <mat-card-subtitle class="name">Persons Name :: Apr 11 2021 3:22 PM</mat-card-subtitle>
-        <mat-card-content class="content"><img src="assets/android-chrome-192x192.png" />This is a picture of a tree. It is evocative a of family tree with roots growing down and branches growing up symbolizing ancestors and progenitors going in both directions.
-            <div class="clear"></div>
-        </mat-card-content>
-    </mat-card>
-    <mat-card class="items">
-        <mat-card-subtitle class="name">Persons Name :: Apr 11 2021 3:22 PM</mat-card-subtitle>
-        <mat-card-content class="content">This is not a picture of a tree. It is evocative a of family tree with roots growing down and branches growing up symbolizing ancestors and progenitors going in both directions.</mat-card-content>
-    </mat-card>
-    <mat-card class="items">
-        <img src="assets/android-chrome-192x192.png" />
-        <mat-card-subtitle class="name">Persons Name</mat-card-subtitle>
-        <mat-card-subtitle class="name">Apr 11 2021 3:22 PM</mat-card-subtitle>
-        <mat-card-content class="content">This is a picture of a tree. It is evocative a of family tree with roots growing down and branches growing up symbolizing ancestors and progenitors going in both directions.</mat-card-content>
-    </mat-card>
     <div *ngIf="tidbits.length > 0" class="full-height">
         <cdk-virtual-scroll-viewport itemSize="10" class="full-height">
             <mat-card *cdkVirtualFor="let tidbit of tidbits" class="items">
