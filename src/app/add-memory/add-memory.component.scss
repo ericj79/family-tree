@@ -1,7 +1,32 @@
 .form-width {
-    width: 20em;
+    width: 30em;
 }
 
 textarea {
     min-height: 10em;
+}
+
+.mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+    font-size: medium;
+}
+
+.mat-toolbar-single-row button {
+    width: 10em;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+#uploadFile {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
 }

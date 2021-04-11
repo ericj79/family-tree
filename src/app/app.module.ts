@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { environment } from '../environments/environment';
 import { AncestryComponent } from './ancestry/ancestry.component';
@@ -27,6 +27,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormatTimePipe } from './format-time.pipe';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,8 @@ import { FormatTimePipe } from './format-time.pipe';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
+    AngularFireStorageModule,
+    ScrollingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,

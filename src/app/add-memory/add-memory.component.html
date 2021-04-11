@@ -17,6 +17,30 @@
             <mat-error *ngIf="form.invalid">Some text is required for the memory</mat-error>
         </mat-form-field>
     </form>
+    <div *ngIf="(downloadURL$ | async) as url; else uploader">
+        <img [src]="url" height="99" />
+    </div>
+    <ng-template #uploader>
+        <mat-form-field appearance="standard">
+            <mat-label>Optional Image Upload</mat-label>
+            <mat-hint>Upload limit of 2MB</mat-hint>
+            <div>
+                <mat-toolbar>
+                    <!-- Display files names -->
+                    <input matInput readonly name="name" />
+
+                    <!-- Browse Button -->
+                    <button mat-raised-button color="primary">
+        Browse Files
+      </button>
+                </mat-toolbar>
+
+                <!-- Fetch selected filed on change -->
+                <input type="file" #fileInput id="uploadFile" (change)="upload($event)" name="uploadFile" accept="image/*" />
+            </div>
+        </mat-form-field>
+        <mat-progress-bar mode="determinate" [value]="uploadProgress$ | async" color="primary"></mat-progress-bar>
+    </ng-template>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-raised-button color="accent" (click)="submit($event)">Add</button>

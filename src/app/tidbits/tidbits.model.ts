@@ -5,4 +5,5 @@ export interface Tidbit {
   text: string;
   guid: string;
   timestamp: firebase.firestore.FieldValue | firebase.firestore.Timestamp;
+  imageURL?: string;
 }
