@@ -55,7 +55,6 @@ export class AncestryComponent implements OnInit, OnDestroy {
   }
 
   onClick(level: string, index: number): void {
-    console.log(level, index);
     switch (level) {
       case 'self':
       case 'parent':
