@@ -18,12 +18,15 @@
         </mat-form-field>
     </form>
     <div *ngIf="(downloadURL$ | async) as url; else uploader">
-        <img [src]="url" height="99" />
+        <img [src]="url" height="103" style="margin: 0 auto; display: block;" />
     </div>
     <ng-template #uploader>
         <mat-form-field appearance="standard">
             <mat-label>Optional Upload</mat-label>
-            <mat-hint>Image upload limit of 2MB</mat-hint>
+            <mat-hint>
+                <span *ngIf="!sizeError">Image upload limit of 2MB</span>
+                <span *ngIf="sizeError" class="error"><mat-icon color="warn">error</mat-icon> {{sizeError}}</span>
+            </mat-hint>
             <div>
                 <mat-toolbar>
                     <!-- Display files names -->
@@ -41,5 +44,5 @@
     </ng-template>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-raised-button color="accent" (click)="submit($event)">Add</button>
+    <button mat-raised-button color="accent" (click)="submit($event)" [disabled]="form.invalid || uploading">Add</button>
 </mat-dialog-actions>

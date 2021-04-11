@@ -31,11 +31,13 @@ export class AddMemoryComponent implements OnInit {
     file: [''],
   });
 
-  fileAttr = 'Choose File';
   public task: undefined | AngularFireUploadTask;
   public uploadProgress$: undefined | Observable<number | undefined>;
   public downloadURL$: Observable<any> = new Subject<any>().asObservable();
   public storageRef: undefined | AngularFireStorageReference;
+  public uploading = false;
+  public sizeError: string | undefined;
+
   private tidbitsCollection: AngularFirestoreCollection<Tidbit>;
 
   constructor(
@@ -51,7 +53,7 @@ export class AddMemoryComponent implements OnInit {
   ngOnInit(): void {}
 
   submit($event: Event): void {
-    if (this.form.invalid) {
+    if (this.form.invalid || this.uploading) {
       $event.stopPropagation();
       return;
     }
@@ -77,16 +79,18 @@ export class AddMemoryComponent implements OnInit {
   }
 
   upload(event: any) {
-    if (
-      event.target &&
-      event.target.files &&
-      event.target.files[0] &&
-      event.target.files[0].size < 1024 * 1024
-    ) {
-      console.log(event.target.files[0].size);
+    this.uploading = false;
+    this.sizeError = undefined;
+    this.storageRef = undefined;
+    if (event.target && event.target.files && event.target.files[0]) {
+      if (event.target.files[0].size > 2 * 1024 * 1024) {
+        this.sizeError = 'This file is too large to upload';
+        return;
+      }
       const randomId = Math.random().toString(36).substring(2);
       this.storageRef = this.afStorage.ref(randomId);
       const task = this.storageRef.put(event.target.files[0]);
+      this.uploading = true;
       this.uploadProgress$ = task.percentageChanges();
 
       // get notified when the download URL is available
@@ -97,34 +101,10 @@ export class AddMemoryComponent implements OnInit {
             if (this.storageRef) {
               this.downloadURL$ = this.storageRef.getDownloadURL();
             }
+            this.uploading = false;
           })
         )
         .subscribe();
     }
   }
-
-  // uploadFileEvt(imgFile: any) {
-  //   if (imgFile.target.files && imgFile.target.files[0]) {
-  //     this.fileAttr = '';
-  //     Array.from(imgFile.target.files).forEach((file: unknown) => {
-  //       this.fileAttr += (file as File).name + ' - ';
-  //     });
-
-  //     // HTML5 FileReader API
-  //     const reader = new FileReader();
-  //     reader.onload = (e: any) => {
-  //       const image = new Image();
-  //       image.src = e.target.result;
-  //       image.onload = (rs) => {
-  //         const imgBase64Path = e.target.result;
-  //       };
-  //     };
-  //     reader.readAsDataURL(imgFile.target.files[0]);
-
-  //     // Reset if duplicate image uploaded again
-  //     this.fileInput.nativeElement.value = '';
-  //   } else {
-  //     this.fileAttr = 'Choose File';
-  //   }
-  // }
 }

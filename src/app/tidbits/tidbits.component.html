@@ -1,5 +1,5 @@
 <div *ngIf="tidbits$ | async; let tidbits; else loading" class="card-height">
-    <div *ngIf(tidbits.length> 0)>
+    <div *ngIf="tidbits.length > 0" class="full-height">
         <cdk-virtual-scroll-viewport itemSize="10" class="full-height">
             <mat-card *cdkVirtualFor="let tidbit of tidbits" class="items">
                 <img mat-card-image *ngIf="tidbit.imageURL" [src]="tidbit.imageURL" />
