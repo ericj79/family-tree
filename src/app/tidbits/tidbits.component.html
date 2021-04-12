@@ -8,7 +8,7 @@
                 </button>
                     <mat-card-subtitle class="name">{{tidbit.name}} :: {{tidbit.timestamp | formatTime}}</mat-card-subtitle>
                     <mat-card-content class="content">
-                        <img *ngIf="tidbit.imageURL" [src]="tidbit.imageURL" /> {{tidbit.text}}
+                        <img *ngIf="tidbit.imageURL" class="mat-elevation-z2" [src]="tidbit.imageURL" /> {{tidbit.text}}
                         <div class="clear"></div>
                     </mat-card-content>
                 </ng-container>
