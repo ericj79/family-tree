@@ -14,9 +14,19 @@ text {
 }
 
 .clickable:hover:not(.checked) {
-    stroke: #81FF40;
+    stroke: #86B940;
     stroke-width: .1px;
-    filter: drop-shadow(0px 0px 1px #81FF40) drop-shadow(0px 0px 2px #81FF40) drop-shadow(0px 0px 1px #81FF40);
+    filter: drop-shadow(0px 0px 1px #86B940) drop-shadow(0px 0px 1px #86B940);
+}
+
+.clickable.male:hover:not(.checked) {
+    stroke: #4080ff94;
+    filter: drop-shadow(0px 0px 1px #4080ff94) drop-shadow(0px 0px 2px #4080ff94);
+}
+
+.clickable.female:hover:not(.checked) {
+    stroke: #ff408194;
+    filter: drop-shadow(0px 0px 1px #ff408194) drop-shadow(0px 0px 2px #ff408194);
 }
 
 .checked {

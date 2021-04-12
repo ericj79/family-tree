@@ -37,7 +37,7 @@
   <g id="people" *ngIf="count$ | async; let data">
     <g *ngFor="let person of chart.great.people; let i=index">
       <g app-person [size]="size" [xPos]="person.x" [yPos]="chart.great.y" [name]="person.name"
-        [gender]="person.gender" level="great" class="clickable" (click)="onClick('great', i)"
+        [gender]="person.gender" level="great" class="clickable {{person.gender}}" (click)="onClick('great', i)"
         [ngClass]="{checked: data.great[i][guid.GUID]}">
       </g>
       <text [attr.x]="person.x" [attr.y]="chart.great.y - (size*1.6)" text-anchor="middle">
@@ -47,7 +47,7 @@
 
     <g *ngFor="let person of chart.grand.people; let i=index">
       <g app-person [size]="size" [xPos]="person.x" [name]="person.name" [yPos]="chart.grand.y"
-        [gender]="person.gender" level="grand" class="clickable" (click)="onClick('grand', i)"
+        [gender]="person.gender" level="grand" class="clickable {{person.gender}}" (click)="onClick('grand', i)"
         [ngClass]="{checked: data.grand[i][guid.GUID]}">
       </g>
       <text [attr.x]="person.x + size + .5" [attr.y]="chart.grand.y + .7">
@@ -57,7 +57,7 @@
 
     <g *ngFor="let person of chart.parent.people; let i=index">
       <g app-person [size]="size" [xPos]="person.x" [yPos]="chart.parent.y" [gender]="person.gender"
-        [name]="person.name" level="parent" class="clickable" (click)="onClick('parent', i)" [ngClass]=" {checked:
+        [name]="person.name" level="parent" class="clickable {{person.gender}}" (click)="onClick('parent', i)" [ngClass]=" {checked:
         data.parent[i][guid.GUID]}">
       </g>
       <text [attr.x]="person.x + size + .5" [attr.y]="chart.parent.y + .7">
