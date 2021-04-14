@@ -21,15 +21,15 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="columns|async" [rowspan]="1" [ngClass]="{'no-flex': !flexHeight}">
             <mat-card class="dashboard-card">
+                <button class="sticky" mat-fab (click)="openDialog()" color="primary">
+                            <mat-icon>add</mat-icon>
+                        </button>
                 <div class="flex-height scroll">
                     <mat-card-header>
                         <mat-card-title>
                             <mat-icon>try</mat-icon>
                             Share
                         </mat-card-title>
-                        <button class="sticky" mat-fab (click)="openDialog()" color="primary">
-                            <mat-icon>add</mat-icon>
-                        </button>
                     </mat-card-header>
                     <mat-card-content class="dashboard-card-content spacer">
                         <app-tidbits></app-tidbits>
