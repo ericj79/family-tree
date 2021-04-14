@@ -1,6 +1,20 @@
 <div *ngIf="tidbits$ | async; let tidbits; else loading" class="card-height">
     <div *ngIf="tidbits.length > 0" class="full-height">
-        <cdk-virtual-scroll-viewport itemSize="10" class="full-height">
+        <div class="full-height" *ngIf="isIOS">
+            <mat-card *ngFor="let action of tidbits" class="items">
+                <ng-container *ngIf="action.payload.doc.data() as tidbit">
+                    <button mat-icon-button class="trash" *ngIf="tidbit.guid === guid.GUID" (click)="delete(action)" color="warn">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+                    <mat-card-subtitle class="name">{{tidbit.name}} :: {{tidbit.timestamp | formatTime}}</mat-card-subtitle>
+                    <mat-card-content class="content">
+                        <img *ngIf="tidbit.imageURL" class="mat-elevation-z2" [src]="tidbit.imageURL" /> {{tidbit.text}}
+                        <div class="clear"></div>
+                    </mat-card-content>
+                </ng-container>
+            </mat-card>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="10" class="full-height" *ngIf="!isIOS">
             <mat-card *cdkVirtualFor="let action of tidbits" class="items">
                 <ng-container *ngIf="action.payload.doc.data() as tidbit">
                     <button mat-icon-button class="trash" *ngIf="tidbit.guid === guid.GUID" (click)="delete(action)" color="warn">

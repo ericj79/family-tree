@@ -16,6 +16,10 @@ export class TidbitsComponent {
     .collection<Tidbit>('tidbits', (ref) => ref.orderBy('timestamp', 'desc'))
     .snapshotChanges();
 
+  public isIOS =
+    /iPad|iPhone|iPod/.test(navigator.platform) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
   constructor(public guid: GuidService, private afs: AngularFirestore) {}
 
   delete(item: DocumentChangeAction<Tidbit>) {
