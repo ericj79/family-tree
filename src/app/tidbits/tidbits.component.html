@@ -1,4 +1,4 @@
-<div *ngIf="tidbits$ | async; let tidbits; else loading" class="card-height">
+<div *ngIf="tidbits$ | async; let tidbits; else loading" class="full-height">
     <div *ngIf="tidbits.length > 0" class="full-height">
         <div class="full-height" *ngIf="isIOS">
             <mat-card *ngFor="let action of tidbits" class="items">
