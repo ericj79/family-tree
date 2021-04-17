@@ -23,20 +23,16 @@ mat-card-content.dashboard-card-content {
     z-index: 1000;
 }
 
+.fixed-size {
+    height: 40em;
+}
+
 .cards .row mat-card {
-    height: 30em;
     position: unset;
     margin-bottom: 1em;
 }
 
-@media (min-width:645px) {
-    .cards .row mat-card {
-        height: 35em;
-    }
-}
-
-@media (min-width:800px) {
-    /* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width:825px) {
     .grid-container {
         display: flex;
         flex-direction: column;
@@ -49,10 +45,12 @@ mat-card-content.dashboard-card-content {
         height: 100%;
         display: flex;
     }
+    .fixed-size {
+        height: unset;
+    }
     .cards .row mat-card {
         flex: 1 1 auto;
         flex-basis: 0;
-        height: unset;
         position: relative;
     }
     .cards .row mat-card:first-child {
