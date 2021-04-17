@@ -2,14 +2,6 @@
     padding: 0 1em;
 }
 
-.dashboard-card {
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    right: 1em;
-    bottom: 1em;
-}
-
 .mat-card-title .mat-icon {
     vertical-align: bottom;
 }
@@ -18,13 +10,48 @@ mat-card-content.dashboard-card-content {
     margin: 0
 }
 
+.relative {
+    position: relative;
+    padding-top: 1em;
+    top: -1em;
+}
+
 .sticky {
     position: absolute;
-    right: -.25em;
+    right: -1.5em;
     top: -.5em;
     z-index: 1000;
 }
 
-.no-flex {
-    height: 25em;
+.cards .row mat-card {
+    height: 30em;
+    position: unset;
+    margin-bottom: 1em;
+}
+
+@media (min-width:961px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .cards {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: row;
+    }
+    .cards>mat-card {
+        flex: 1 1 auto;
+        flex-basis: 0;
+        height: 100%;
+    }
+}
+
+@media (min-width:1025px) {
+    /* big landscape tablets, laptops, and desktops */
+}
+
+@media (min-width:1281px) {
+    /* hi-res laptops and desktops */
 }

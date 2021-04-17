@@ -1,10 +1,10 @@
-<div [ngClass]="{'flex-height scroll': flexHeight}" class="grid-container">
+<div class="grid-container">
     <p>
         Welcome to the West Chester Relief Society 4 Generation Family History Challenge! Please help us work on our ward's goal of each person completing a 4 generation ancestry chart by tracking your progress in the chart below. You can also share interesting
         family history memories with your fellow Relief Society sisters. Challenge will run through May 9th.
     </p>
-    <mat-grid-list class="spacer" cols="2" [rowHeight]="flexHeight ? '100%' : '30em'">
-        <mat-grid-tile [colspan]="columns | async" [rowspan]="1" [ngClass]="{'no-flex': !flexHeight}">
+    <div class="cards">
+        <div class="row">
             <mat-card class="dashboard-card">
                 <div class="flex-height">
                     <mat-card-header>
@@ -18,24 +18,24 @@
                     </mat-card-content>
                 </div>
             </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="columns|async" [rowspan]="1" [ngClass]="{'no-flex': !flexHeight}">
-            <mat-card class="dashboard-card">
-                <button class="sticky" mat-fab (click)="openDialog()" color="primary">
+            <mat-card>
+                <div class="relative full-height">
+                    <button class="sticky" mat-fab (click)="openDialog()" color="primary">
                             <mat-icon>add</mat-icon>
                         </button>
-                <div class="flex-height scroll">
-                    <mat-card-header>
-                        <mat-card-title>
-                            <mat-icon>try</mat-icon>
-                            Share
-                        </mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content class="dashboard-card-content spacer">
-                        <app-tidbits></app-tidbits>
-                    </mat-card-content>
+                    <div class="flex-height scroll">
+                        <mat-card-header>
+                            <mat-card-title>
+                                <mat-icon>try</mat-icon>
+                                Share
+                            </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content class="dashboard-card-content spacer">
+                            <app-tidbits></app-tidbits>
+                        </mat-card-content>
+                    </div>
                 </div>
             </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+        </div>
+    </div>
 </div>

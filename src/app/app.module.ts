@@ -7,7 +7,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { environment } from '../environments/environment';
 import { AncestryComponent } from './ancestry/ancestry.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -46,7 +45,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AngularFireAnalyticsModule,
     AngularFireStorageModule,
     ScrollingModule,
-    LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

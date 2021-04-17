@@ -2,12 +2,13 @@
     height: 100%;
 }
 
-.sidenav {
-    width: 200px;
-}
-
 .sidenav .mat-toolbar {
     background: inherit;
+}
+
+.mat-sidenav-content {
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .mat-toolbar.mat-primary {
