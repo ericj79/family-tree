@@ -43,9 +43,7 @@
 @media (min-width:961px) {
     /* tablet, landscape iPad, lo-res laptops ands desktops */
     .items img {
-        float: right;
         max-width: 40%;
-        max-height: 10em;
         margin-left: .75em;
     }
 }
@@ -53,7 +51,6 @@
 @media (min-width:1025px) {
     /* big landscape tablets, laptops, and desktops */
     .items img {
-        float: right;
         max-width: 35%;
         max-height: 12em;
         margin-left: 1em;
@@ -63,10 +60,7 @@
 @media (min-width:1281px) {
     /* hi-res laptops and desktops */
     .items img {
-        float: right;
         max-width: 15em;
-        max-height: 12em;
-        margin-left: 1em;
     }
 }
 
