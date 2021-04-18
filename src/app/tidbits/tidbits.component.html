@@ -1,33 +1,29 @@
+<ng-template #cardContent let-action>
+    <ng-container *ngIf="action.payload.doc.data() as tidbit">
+        <button mat-icon-button class="trash" *ngIf="tidbit.guid === guid.GUID" (click)="delete(action)" color="warn">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+        <mat-card-subtitle class="name">{{tidbit.name}} :: {{tidbit.timestamp | formatTime}}</mat-card-subtitle>
+        <mat-card-content class="content">
+            <img *ngIf="tidbit.imageURL" class="mat-elevation-z2" [src]="tidbit.imageURL" /> {{tidbit.text}}
+            <div class="clear"></div>
+        </mat-card-content>
+    </ng-container>
+</ng-template>
 <div *ngIf="tidbits$ | async; let tidbits; else loading" class="full-height">
     <div *ngIf="tidbits.length > 0" class="full-height">
-        <div class="full-height" *ngIf="isIOS">
-            <mat-card *ngFor="let action of tidbits" class="items">
-                <ng-container *ngIf="action.payload.doc.data() as tidbit">
-                    <button mat-icon-button class="trash" *ngIf="tidbit.guid === guid.GUID" (click)="delete(action)" color="warn">
-                  <mat-icon>delete_outline</mat-icon>
-                </button>
-                    <mat-card-subtitle class="name">{{tidbit.name}} :: {{tidbit.timestamp | formatTime}}</mat-card-subtitle>
-                    <mat-card-content class="content">
-                        <img *ngIf="tidbit.imageURL" class="mat-elevation-z2" [src]="tidbit.imageURL" /> {{tidbit.text}}
-                        <div class="clear"></div>
-                    </mat-card-content>
-                </ng-container>
-            </mat-card>
-        </div>
-        <cdk-virtual-scroll-viewport itemSize="10" class="full-height" *ngIf="!isIOS">
+        <cdk-virtual-scroll-viewport itemSize="10" class="full-height" *ngIf="!alternateView;else apple">
             <mat-card *cdkVirtualFor="let action of tidbits" class="items">
-                <ng-container *ngIf="action.payload.doc.data() as tidbit">
-                    <button mat-icon-button class="trash" *ngIf="tidbit.guid === guid.GUID" (click)="delete(action)" color="warn">
-                  <mat-icon>delete_outline</mat-icon>
-                </button>
-                    <mat-card-subtitle class="name">{{tidbit.name}} :: {{tidbit.timestamp | formatTime}}</mat-card-subtitle>
-                    <mat-card-content class="content">
-                        <img *ngIf="tidbit.imageURL" class="mat-elevation-z2" [src]="tidbit.imageURL" /> {{tidbit.text}}
-                        <div class="clear"></div>
-                    </mat-card-content>
-                </ng-container>
+                <ng-template *ngTemplateOutlet="cardContent; context: {$implicit: action}"></ng-template>
             </mat-card>
         </cdk-virtual-scroll-viewport>
+        <ng-template #apple>
+            <div class="full-height scroll" [ngStyle]="{'height': limitHeight}">
+                <mat-card *ngFor="let action of tidbits" class="items">
+                    <ng-template *ngTemplateOutlet="cardContent; context: {$implicit: action}"></ng-template>
+                </mat-card>
+            </div>
+        </ng-template>
     </div>
     <div *ngIf="tidbits.length === 0">No experiences shared yet. Please add your own experience.</div>
 </div>
